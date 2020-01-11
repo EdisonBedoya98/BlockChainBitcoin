@@ -1,0 +1,23 @@
+{
+  "name": "blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdisonBedoya98/BlockChainBitcoin.git"
+  },
+  "author": "edison y juanjo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdisonBedoya98/BlockChainBitcoin/issues"
+  },
+  "homepage": "https://github.com/EdisonBedoya98/BlockChainBitcoin#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "js-sha256": "^0.9.0"
+  }
+}
