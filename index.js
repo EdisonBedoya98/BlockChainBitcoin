@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('API works!!!')
 });
 
 app.post('/hash', (req, res) =>{
