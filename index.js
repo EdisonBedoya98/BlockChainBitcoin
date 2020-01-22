@@ -12,10 +12,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/hash', (req, res) =>{
-    var info = req.body.info;   
-    var hash = sha256(info);
-    console.log("Hash info = " + hash);
-    res.end(hash);
+    var message = req.body.message;   
+    var hash = sha256(message);
+    res.res({
+      "hash" : hash
+    });
 });
 
 app.post('/proofOfWork', (req, res) =>{

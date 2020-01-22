@@ -24,3 +24,7 @@ class Node {
         return this.root;
     }
 }
+
+module.exports = {
+    Node
+}
