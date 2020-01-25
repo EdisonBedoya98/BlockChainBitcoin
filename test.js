@@ -6,4 +6,4 @@ root.getPairedLeaves();
 
 root.buildTree(root.leafNodes);
 
-console.log(root.rootNode.data);
+console.log(root.rootNode.getData());

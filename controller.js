@@ -1,10 +1,11 @@
 const sha256 = require("js-sha256");
+const { merkleTree } = require("./merkleTree.js");
 
 function hasZeros(hash, n){
-    var zeroCount = 0;
-    var auxn = Math.ceil(n/8);
+    let zeroCount = 0;
+    let auxn = Math.ceil(n/8);
     
-    for (var i = 0; i < auxn; i++) {
+    for (let i = 0; i < auxn; i++) {
         const element = hash[i];
         
         if (element > 0) {
@@ -19,8 +20,8 @@ function hasZeros(hash, n){
 }
 
 function proofOfWork(hash, n) {
-    var nonce = 0;
-    var newHash = hash;  
+    let nonce = 0;
+    let newHash = hash;  
 
     while ( !hasZeros(newHash, n) ) {
         nonce++;
@@ -33,7 +34,17 @@ function proofOfWork(hash, n) {
     };
 }
 
+function createMerkleTree(transactions) {
+    const tree = new merkleTree (transactions);
+    
+    tree.getPairedLeaves();
+    tree.buildTree(tree.leafNodes);
+
+    return tree;
+}
+
 module.exports = {
     hasZeros,
-    proofOfWork
+    proofOfWork,
+    createMerkleTree
 }

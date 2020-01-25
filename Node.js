@@ -14,13 +14,13 @@ class Node {
     setSibling(sibling) {
         this.sibling = sibling;
     }
-    get getData() {
+    getData() {
         return this.data;
     }
-    get getSibling() {
+    getSibling() {
         return this.sibling;
     }
-    get getroot() {
+    getroot() {
         return this.root;
     }
 }

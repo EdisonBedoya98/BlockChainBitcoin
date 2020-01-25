@@ -12,22 +12,31 @@ app.get('/', (req, res) => {
 });
 
 app.post('/hash', (req, res) =>{
-    var message = req.body.message;   
-    var hash = sha256(message);
-    res.res({
+    let message = req.body.message;   
+    let hash = sha256(message);
+    res.send({
       "hash" : hash
     });
 });
 
 app.post('/proofOfWork', (req, res) =>{
-  var hash = req.body.hash;
-  var numberOfZeros = req.body.numberOfZeros;
-  var ans = controller.proofOfWork(hash, numberOfZeros);  
+  let hash = req.body.hash;
+  let numberOfZeros = req.body.numberOfZeros;
+  let ans = controller.proofOfWork(hash, numberOfZeros);  
 
   res.send({
     "hash" : hash + ans.nonce,
     "nonce" : ans.nonce,
     "newHash" : ans.newHash
+  });
+});
+
+app.post('/merkleTree', (req, res) =>{
+  let transactions = req.body.transactions;
+  let merkleTree = controller.createMerkleTree(transactions);  
+
+  res.send({
+    "root" : merkleTree.getRoot().getData()
   });
 });
 

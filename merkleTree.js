@@ -11,7 +11,7 @@ class merkleTree {
         this.leafNodes = [];
     }
 
-    get getRoot(){
+    getRoot(){
         return this.rootNode;
     }
 
@@ -35,11 +35,7 @@ class merkleTree {
             let leftNode = element;
             let rightNode = nextElement;
             
-            console.log("data:" + leftNode.data + rightNode.data);
-            
-            console.log(sha256(leftNode.data + rightNode.data));
-            
-            let newRoot = new Node (sha256(leftNode.data + rightNode.data));
+            let newRoot = new Node (sha256(leftNode.getData() + rightNode.getData()));
             leftNode.root = newRoot;
             rightNode.root = newRoot;
 
