@@ -11,32 +11,43 @@ app.get('/', (req, res) => {
   res.send('API works!!!')
 });
 
-app.post('/hash', (req, res) =>{
-    let message = req.body.message;   
-    let hash = sha256(message);
-    res.send({
-      "hash" : hash
-    });
-});
+app.get('/hashedtransactions', (req, res) => {
+  let transactions = req.body.transactions;
 
-app.post('/proofOfWork', (req, res) =>{
-  let hash = req.body.hash;
-  let numberOfZeros = req.body.numberOfZeros;
-  let ans = controller.proofOfWork(hash, numberOfZeros);  
+  let hashedtransactions = controller.hashedtransactions(transactions);
 
   res.send({
-    "hash" : hash + ans.nonce,
-    "nonce" : ans.nonce,
-    "newHash" : ans.newHash
+    hashedtransactions
   });
 });
 
-app.post('/merkleTree', (req, res) =>{
-  let transactions = req.body.transactions;
-  let merkleTree = controller.createMerkleTree(transactions);  
+
+app.post('/hash', (req, res) => {
+  let message = req.body.message;
+  let hash = sha256(message);
+  res.send({
+    "hash": hash
+  });
+});
+
+app.post('/proofOfWork', (req, res) => {
+  let hash = req.body.hash;
+  let numberOfZeros = req.body.numberOfZeros;
+  let ans = controller.proofOfWork(hash, numberOfZeros);
 
   res.send({
-    "root" : merkleTree.getRoot().getData()
+    "hash": hash + ans.nonce,
+    "nonce": ans.nonce,
+    "newHash": ans.newHash
+  });
+});
+
+app.post('/merkleTree', (req, res) => {
+  let transactions = req.body.transactions;
+  let merkleTree = controller.createMerkleTree(transactions);
+
+  res.send({
+    "root": merkleTree.getRoot().getData()
   });
 });
 

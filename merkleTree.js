@@ -1,7 +1,7 @@
 const { Node } = require("./Node.js");
 const sha256 = require("js-sha256");
 
-const root = new Node ("Hash");
+const root = new Node("Hash");
 
 class merkleTree {
 
@@ -11,11 +11,11 @@ class merkleTree {
         this.leafNodes = [];
     }
 
-    getRoot(){
+    getRoot() {
         return this.rootNode;
     }
 
-    buildTree(nodes){
+    buildTree(nodes) {
         if (nodes.length == 1) {
             this.rootNode = nodes[0];
             return;
@@ -31,34 +31,34 @@ class merkleTree {
                 break;
             }
 
-            const nextElement = nodes[i+1];
+            const nextElement = nodes[i + 1];
             let leftNode = element;
             let rightNode = nextElement;
-            
-            let newRoot = new Node (sha256(leftNode.getData() + rightNode.getData()));
+
+            let newRoot = new Node(sha256(leftNode.getData() + rightNode.getData()));
             leftNode.root = newRoot;
             rightNode.root = newRoot;
 
             parenths.push(newRoot);
-        }        
+        }
 
         return this.buildTree(parenths);
     }
 
-    getPairedLeaves(){
-        
+    getPairedLeaves() {
+
         for (let i = 0; i < this.leaves.length; i = i + 2) {
             const element = this.leaves[i];
 
             if (i == this.leaves.length - 1) {
-                let newNode = new Node (element);
+                let newNode = new Node(element);
                 this.leafNodes.push(newNode);
                 break;
             }
 
-            const nextElement = this.leaves[i+1];
-            let leftNode = new Node (element);
-            let rightNode = new Node (nextElement);
+            const nextElement = this.leaves[i + 1];
+            let leftNode = new Node(element);
+            let rightNode = new Node(nextElement);
 
             leftNode.sibling = rightNode;
             rightNode.sibling = leftNode;
