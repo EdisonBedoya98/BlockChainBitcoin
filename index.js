@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const sha256 = require("js-sha256");
 const controller = require("./controller.js");
-
+let blockchain = [];
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -41,6 +41,18 @@ app.post('/proofOfWork', (req, res) => {
     "newHash": ans.newHash
   });
 });
+
+app.post('/createBlock', (req, res) => {
+  let transactions = req.body.transactions;
+  // let merkleTree = controller.createMerkleTree(transactions);
+
+  let block = controller.createBlock(transactions, blockchain);
+  this.blockchain.push(block);
+  res.send({
+    "block": block.getHashedTransactions()
+  });
+});
+
 
 app.post('/merkleTree', (req, res) => {
   let transactions = req.body.transactions;

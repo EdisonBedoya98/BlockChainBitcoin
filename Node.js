@@ -4,7 +4,7 @@ class Node {
         this.root = null;
         this.sibling = null;
     }
-  
+
     setData(data) {
         this.data = data;
     }
