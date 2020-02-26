@@ -47,9 +47,17 @@ app.post('/createBlock', (req, res) => {
   // let merkleTree = controller.createMerkleTree(transactions);
 
   let block = controller.createBlock(transactions, blockchain);
-  this.blockchain.push(block);
+  console.log(block)
+  blockchain.push(block);
   res.send({
-    "block": block.getHashedTransactions()
+    "block": block.getNonce()
+  });
+});
+
+app.get('/blockchain', (req, res) => {
+
+  res.send({
+    blockchain
   });
 });
 

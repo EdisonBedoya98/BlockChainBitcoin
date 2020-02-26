@@ -39,6 +39,7 @@ function createBlock(transactions, blockChain) {
 
 
     let hashedtransactions = this.hashedtransactions(transactions);
+    console.log(hashedtransactions);
     const tree = new merkleTree(hashedtransactions);
 
     tree.getPairedLeaves();
@@ -52,13 +53,15 @@ function createBlock(transactions, blockChain) {
 
 
     let block = new Block();
-    if (blockChain.lenght == 0) {
+    if (blockChain.length === 0) {
+        console.log('entra')
         block.setHashPrev(0);
         block.setHashedTransactions(rootHashedData);
         block.setNonce(nonce);
 
     } else {
-        let prevBlock = blockChain[blockChain.lenght - 1];
+        let prevBlock = blockChain[blockChain.length - 1];
+        console.log(prevBlock);
         let hashPrev = sha256.array(prevBlock.getHashPrev() + prevBlock.getNonce() + prevBlock.getHashedTransactions());
 
         block.setHashPrev(hashPrev);
