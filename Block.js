@@ -4,9 +4,8 @@ class Block {
         this.hashPrev = null;
         this.nonce = null;
         this.hashedTransactions = null;
-     
     }
-  
+
     setNonce(nonce) {
         this.nonce = nonce;
     }
@@ -19,7 +18,7 @@ class Block {
     getNonce() {
         return this.nonce;
     }
-  
+
     getHashedTransactions() {
         return this.hashedTransactions;
     }
@@ -27,87 +26,6 @@ class Block {
         return this.hashedTransactions;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = {

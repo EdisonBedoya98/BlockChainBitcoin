@@ -5,7 +5,7 @@ class Transaction {
         this.quantity = 0;
         this.to = null;
     }
-  
+
     setFrom(from) {
         this.from = from;
     }
@@ -18,11 +18,15 @@ class Transaction {
     getFrom() {
         return this.from;
     }
-  
+
     getQuantity() {
         return this.quantity;
     }
     getHashTo() {
         return this.to;
     }
+}
+
+module.exports = {
+    Transaction
 }

@@ -4,11 +4,11 @@ class GenesisBlock {
         this.hashPrev = 0;
         this.nonce = null;
         this.hashedTransactions = null;
-        this.mine =  null;
+        this.mine = null; //Cantidad de monedas que se pueden crear
         this.balance = null;
         this.hashDB = null;
     }
-  
+
     setNonce(nonce) {
         this.nonce = nonce;
     }
@@ -33,7 +33,7 @@ class GenesisBlock {
     getNonce() {
         return this.nonce;
     }
-  
+
     getHashedTransactions() {
         return this.hashedTransactions;
     }
@@ -41,6 +41,3 @@ class GenesisBlock {
         return this.hashedTransactions;
     }
 }
-
-
-

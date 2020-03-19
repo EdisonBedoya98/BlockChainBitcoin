@@ -2,6 +2,8 @@ const sha256 = require("js-sha256");
 const { merkleTree } = require("./merkleTree.js");
 
 const { Block } = require("./Block.js");
+const { Transaction } = require("./Transaction.js");
+
 
 function hasZeros(hash, n) {
     let zeroCount = 0;
@@ -35,8 +37,19 @@ function proofOfWork(hash, n) {
         "hashNonce": newHash
     };
 }
-function createBlock(transactions, blockChain) {
 
+function createTransaction(transaction) {
+
+    let transactionEntity = new Transaction();
+    console.log(transactionEntity)
+    transactionEntity.setFrom(transaction.from);
+    transactionEntity.setQuantity(transaction.quantity);
+    transactionEntity.setTo(transaction.to);
+
+    return transactionEntity;
+}
+
+function createBlock(transactions, blockChain) {
 
     let hashedtransactions = this.hashedtransactions(transactions);
     console.log(hashedtransactions);
@@ -47,10 +60,9 @@ function createBlock(transactions, blockChain) {
 
     let rootHashedData = tree.getRoot().getData();
 
-    let ans = this.proofOfWork(rootHashedData, 5);//Se hace la prueba de trabajo con 5 ceros
+    let ans = this.proofOfWork(rootHashedData, 5); //Se hace la prueba de trabajo con 5 ceros
 
     let nonce = ans.nonce;
-
 
     let block = new Block();
     if (blockChain.length === 0) {
@@ -69,24 +81,17 @@ function createBlock(transactions, blockChain) {
         block.setNonce(nonce);
         block.setHashedTransactions(rootHashedData);
     }
-
     return block;
-
-
-
-
-
-
-
 }
+
 function createMerkleTree(transactions) {
     const tree = new merkleTree(transactions);
-
     tree.getPairedLeaves();
     tree.buildTree(tree.leafNodes);
 
     return tree;
 }
+
 function hashedtransactions(transactions) {
     let hashedtransactions = [];
     transactions.forEach(transaction => {
@@ -100,5 +105,6 @@ module.exports = {
     proofOfWork,
     createMerkleTree,
     hashedtransactions,
-    createBlock
+    createBlock,
+    createTransaction
 }
